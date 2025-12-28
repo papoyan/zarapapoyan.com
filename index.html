@@ -1,1128 +1,188 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zara Papoyan - Senior Site Reliability Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            --primary-dark: #4f46e5;
-            --primary-medium: #8b5cf6;
-            --primary-light: #c084fc;
-            --text-primary: #111827;
-            --text-secondary: #6b7280;
-            --text-tertiary: #9ca3af;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-            --bg-tertiary: #f3f4f6;
-            --border-color: #e5e7eb;
-            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-primary);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--card-shadow);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            max-width: 900px;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease;
-            letter-spacing: -0.025em;
-        }
-
-        .hero .title {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.2s both;
-            font-weight: 500;
-        }
-
-        .hero .summary {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
-            line-height: 1.7;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            box-shadow: var(--card-shadow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--card-shadow-hover);
-        }
-
-        .btn-secondary {
-            background: var(--bg-primary);
-            color: var(--primary-dark);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary-medium);
-            color: var(--primary-dark);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section-title {
-            font-size: 2.75rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--text-primary);
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-            letter-spacing: -0.025em;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary-gradient);
-            border-radius: 2px;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .skill-category {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--card-shadow-hover);
-            border-color: var(--primary-light);
-        }
-
-        .skill-category h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-
-        .skill-category h3 i {
-            margin-right: 0.5rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: var(--bg-tertiary);
-            color: var(--primary-dark);
-            padding: 0.375rem 0.875rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .skill-tag:hover {
-            background: var(--primary-dark);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Experience Section */
-        .experience-timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .experience-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--primary-gradient);
-        }
-
-        .experience-item {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .experience-dot {
-            position: absolute;
-            left: -0.625rem;
-            top: 0.5rem;
-            width: 1.5rem;
-            height: 1.5rem;
-            background: var(--primary-gradient);
-            border-radius: 50%;
-            border: 4px solid var(--bg-primary);
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .experience-item:hover .experience-dot {
-            transform: scale(1.2);
-        }
-
-        .experience-content {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .experience-item:hover .experience-content {
-            transform: translateX(10px);
-            box-shadow: var(--card-shadow-hover);
-            border-color: var(--primary-light);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .experience-company {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .experience-title {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-top: 0.25rem;
-        }
-
-        .experience-date {
-            background: var(--bg-tertiary);
-            color: var(--primary-dark);
-            padding: 0.375rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-        }
-
-        .experience-details {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .experience-details li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .experience-details li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--primary-medium);
-            font-weight: bold;
-        }
-
-        /* Certifications */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .certification-card {
-            background: var(--bg-primary);
-            padding: 2.5rem 2rem;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .certification-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--card-shadow-hover);
-            border-color: var(--primary-light);
-        }
-
-        .certification-icon {
-            font-size: 3.5rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .certification-card h3 {
-            color: var(--text-primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .certification-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: var(--bg-primary);
-            border-radius: 16px;
-            padding: 3rem;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--card-shadow);
-        }
-
-        .contact-section p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.875rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-medium);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact-form button {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .contact-item:hover {
-            border-color: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-item a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-item a:hover {
-            color: var(--primary-dark);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            margin-top: 2rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.75rem;
-            }
-
-            .hero .title {
-                font-size: 1.25rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .experience-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .section-title {
-                font-size: 2.25rem;
-            }
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 3.5rem;
-            height: 3.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            border-color: var(--primary-medium);
-        }
-
-        .theme-toggle i {
-            font-size: 1.2rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Tech stack visualization */
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-        }
-
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .tech-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--bg-primary);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .tech-item:hover .tech-icon {
-            border-color: var(--primary-medium);
-            box-shadow: var(--card-shadow-hover);
-        }
-
-        .tech-item:hover .tech-icon i {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .tech-name {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>Zara Papoyan | Senior Platform Engineer (DevOps/SRE)</title>
+  <meta name="description" content="Zara Papoyan is a Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://zarapapoyan.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Zara Papoyan" />
+  <meta property="og:title" content="Zara Papoyan | Senior Platform Engineer (DevOps/SRE)" />
+  <meta property="og:description" content="Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering." />
+  <meta property="og:url" content="https://zarapapoyan.com/" />
+  <!-- If you later add a headshot image hosted on this domain, set og:image -->
+  <!-- <meta property="og:image" content="https://zarapapoyan.com/og-image.jpg" /> -->
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Zara Papoyan | Senior Platform Engineer (DevOps/SRE)" />
+  <meta name="twitter:description" content="Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering." />
+
+  <!-- Basic performance hints -->
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Optional favicon (add favicon.svg file below) -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+      --link: #111827;
+      --card: #f9fafb;
+      --maxw: 880px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.85; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px; }
+    header { display: flex; flex-direction: column; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .name { font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; margin: 0; }
+    .title { margin: 0; font-size: 18px; color: var(--muted); }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      text-decoration: none;
+    }
+    .pill span { color: var(--muted); text-decoration: none; }
+    .pill strong { font-weight: 600; text-decoration: none; }
+    main { padding-top: 22px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; }
+    @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+    h2 { margin: 0 0 10px; font-size: 18px; }
+    ul { margin: 8px 0 0 18px; padding: 0; }
+    li { margin: 6px 0; color: var(--text); }
+    .muted { color: var(--muted); }
+    footer { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Zara Papoyan",
+    "url": "https://zarapapoyan.com/",
+    "jobTitle": "Senior Platform Engineer",
+    "sameAs": [
+      "https://www.linkedin.com/in/zarapapoyan/",
+      "https://github.com/papoyan"
+    ],
+    "knowsAbout": [
+      "Site Reliability Engineering",
+      "DevOps",
+      "Platform Engineering",
+      "AWS",
+      "Kubernetes",
+      "Terraform",
+      "CI/CD",
+      "Observability",
+      "Infrastructure as Code"
+    ]
+  }
+  </script>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">ZP</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+  <div class="wrap">
+    <header>
+      <h1 class="name">Zara Papoyan</h1>
+      <p class="title">Senior Platform Engineer (DevOps / SRE) — AWS • Kubernetes • Terraform • CI/CD • Reliability</p>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Zara Papoyan</h1>
-            <p class="title">Senior Site Reliability Engineer</p>
-            <p class="summary">
-                17+ years of experience architecting robust, scalable systems across AWS, GCP, and Azure. 
-                Passionate about automation, observability, and solving complex reliability challenges 
-                with modern DevOps practices and cutting-edge technologies.
-            </p>
-            <div class="tech-stack">
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <i class="fab fa-aws"></i>
-                    </div>
-                    <span class="tech-name">AWS</span>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <i class="fab fa-docker"></i>
-                    </div>
-                    <span class="tech-name">Docker</span>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <i class="fas fa-dharmachakra"></i>
-                    </div>
-                    <span class="tech-name">Kubernetes</span>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <span class="tech-name">Python</span>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <span class="tech-name">Linux</span>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <span class="tech-name">Monitoring</span>
-                </div>
-            </div>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="#skills" class="btn btn-secondary">View Skills</a>
-            </div>
-        </div>
-    </section>
+      <nav class="links" aria-label="Primary links">
+        <a class="pill" href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">
+          <strong>LinkedIn</strong> <span>linkedin.com/in/zarapapoyan</span>
+        </a>
+        <a class="pill" href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">
+          <strong>GitHub</strong> <span>github.com/papoyan</span>
+        </a>
+        <!-- Optional: add an email once you decide on one -->
+        <!-- <a class="pill" href="mailto:you@zarapapoyan.com"><strong>Email</strong> <span>you@zarapapoyan.com</span></a> -->
+      </nav>
+    </header>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Core Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3><i class="fas fa-cloud"></i> Cloud Platforms</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">GCP</span>
-                    <span class="skill-tag">Azure</span>
-                    <span class="skill-tag">AppStream</span>
-                    <span class="skill-tag">EC2</span>
-                    <span class="skill-tag">Kubernetes</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-code"></i> Automation & IaC</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Terraform</span>
-                    <span class="skill-tag">Salt</span>
-                    <span class="skill-tag">Ansible</span>
-                    <span class="skill-tag">Puppet</span>
-                    <span class="skill-tag">Chef</span>
-                    <span class="skill-tag">Jenkins</span>
-                    <span class="skill-tag">Argo CD</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-database"></i> Data & Monitoring</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Prometheus</span>
-                    <span class="skill-tag">Grafana</span>
-                    <span class="skill-tag">Datadog</span>
-                    <span class="skill-tag">Observe</span>
-                    <span class="skill-tag">Elasticsearch</span>
-                    <span class="skill-tag">Splunk</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">MySQL</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-network-wired"></i> Networking & Systems</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Linux (RHEL/Debian)</span>
-                    <span class="skill-tag">DNS/HTTP/TLS</span>
-                    <span class="skill-tag">Nginx</span>
-                    <span class="skill-tag">Varnish</span>
-                    <span class="skill-tag">HAProxy</span>
-                    <span class="skill-tag">Distributed Systems</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-terminal"></i> Languages & Tools</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Bash</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">JenkinsX</span>
-                    <span class="skill-tag">Django</span>
-                    <span class="skill-tag">Git</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-cogs"></i> Methodologies</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">DevOps</span>
-                    <span class="skill-tag">SRE</span>
-                    <span class="skill-tag">CI/CD</span>
-                    <span class="skill-tag">Infrastructure as Code</span>
-                    <span class="skill-tag">Observability</span>
-                    <span class="skill-tag">Site Reliability</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main>
+      <section>
+        <h2>About</h2>
+        <p class="muted">
+          I am a Senior Platform Engineer focused on building reliable, secure, and scalable cloud infrastructure.
+          I work across Kubernetes platforms, AWS services, infrastructure-as-code, CI/CD automation, and observability
+          to improve system uptime, performance, and developer velocity.
+        </p>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="experience-timeline">
-            <div class="experience-item">
-                <div class="experience-dot"></div>
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-company">aPriori Technologies</h3>
-                            <p class="experience-title">Senior Site Reliability Engineer</p>
-                        </div>
-                        <span class="experience-date">2019–2025</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Automated AWS AppStream provisioning from hours to one click using Terraform, Jenkins, Python</li>
-                        <li>Built and maintained AWS infrastructure, CI/CD pipelines, and Kubernetes-based services</li>
-                        <li>Implemented monitoring, alerting, and auditing with Datadog and Observe</li>
-                        <li>Automated onboarding, environment builds, and internal tooling using Python/Bash</li>
-                    </ul>
-                </div>
-            </div>
+        <h2 style="margin-top:14px;">Core Competencies</h2>
+        <ul>
+          <li>Platform Engineering: Kubernetes (EKS), Helm, Argo CD, GitOps, service onboarding</li>
+          <li>Infrastructure as Code: Terraform modules, environments, policy-as-code patterns</li>
+          <li>CI/CD & Automation: pipelines, release automation, build/test/deploy workflows</li>
+          <li>Reliability Engineering: SLOs/SLIs, incident response, runbooks, postmortems</li>
+          <li>Observability: metrics/logs/traces, alerting strategy, operational dashboards</li>
+          <li>Security & Access: IAM strategy, secrets management, least privilege, auditing</li>
+        </ul>
 
-            <div class="experience-item">
-                <div class="experience-dot"></div>
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-company">Kahoot!</h3>
-                            <p class="experience-title">Senior Infrastructure Engineer</p>
-                        </div>
-                        <span class="experience-date">2019</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Implemented Terraform for DNS and AWS automation</li>
-                        <li>Built JenkinsX pipelines on Kubernetes (GCP)</li>
-                        <li>Migrated automation from Chef to Ansible</li>
-                    </ul>
-                </div>
-            </div>
+        <h2 style="margin-top:14px;">Focus Areas</h2>
+        <ul>
+          <li>Reducing operational toil through automation and standardization</li>
+          <li>Improving deployment safety via GitOps, progressive delivery, and guardrails</li>
+          <li>Hardening cloud environments with pragmatic security controls</li>
+        </ul>
+      </section>
 
-            <div class="experience-item">
-                <div class="experience-dot"></div>
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-company">Nuance Communications</h3>
-                            <p class="experience-title">Principal DevOps Engineer</p>
-                        </div>
-                        <span class="experience-date">2015–2019</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Designed Salt-based configuration management and automated VM provisioning</li>
-                        <li>Built Python/Django self-service portal; managed Elasticsearch and Splunk environments</li>
-                    </ul>
-                </div>
-            </div>
+      <section>
+        <h2>Professional Profiles</h2>
+        <ul>
+          <li><a href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">GitHub</a></li>
+        </ul>
 
-            <div class="experience-item">
-                <div class="experience-dot"></div>
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-company">Salesforce</h3>
-                            <p class="experience-title">Systems Engineer</p>
-                        </div>
-                        <span class="experience-date">2014–2015</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Built a Python-based portal for Perforce</li>
-                        <li>Implemented Puppet automation and optimized CI/CD pipelines</li>
-                    </ul>
-                </div>
-            </div>
+        <h2 style="margin-top:14px;">Keywords (for search)</h2>
+        <p class="muted">
+          Zara Papoyan, Senior Platform Engineer, DevOps Engineer, Site Reliability Engineer, SRE,
+          AWS, Kubernetes, Terraform, EKS, Helm, Argo CD, GitOps, CI/CD, Observability.
+        </p>
 
-            <div class="experience-item">
-                <div class="experience-dot"></div>
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-company">PulsePoint</h3>
-                            <p class="experience-title">Senior Systems Administrator</p>
-                        </div>
-                        <span class="experience-date">2011–2014</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Managed XenServer, EC2, and VMware environments</li>
-                        <li>Built Python-based deployment system and automated daily operations</li>
-                        <li>Implemented Varnish caching for a high-traffic news platform</li>
-                    </ul>
-                </div>
-            </div>
+        <h2 style="margin-top:14px;">Contact</h2>
+        <p class="muted">
+          For professional inquiries, please connect via LinkedIn.
+        </p>
+      </section>
+    </main>
 
-            <div class="experience-item">
-                <div class="experience-dot"></div>
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-company">Keller Williams Realty</h3>
-                            <p class="experience-title">Senior Systems Administrator</p>
-                        </div>
-                        <span class="experience-date">2010–2011</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Managed 800+ Debian servers and deployed Java apps on Glassfish</li>
-                        <li>Integrated Apache and Glassfish with LDAP</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-dot"></div>
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-company">Alentus Web Hosting</h3>
-                            <p class="experience-title">Systems Administrator</p>
-                        </div>
-                        <span class="experience-date">2007–2010</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Managed 200+ servers and network infrastructure</li>
-                        <li>Built internal automation scripts and migrated Apache/MySQL systems</li>
-                        <li>Led full company hosting migration with zero downtime</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications">
-        <h2 class="section-title">Certifications</h2>
-        <div class="certifications-grid">
-            <div class="certification-card">
-                <div class="certification-icon">
-                    <i class="fas fa-certificate"></i>
-                </div>
-                <h3>Terraform Associate</h3>
-                <p>HashiCorp Certified</p>
-            </div>
-            <div class="certification-card">
-                <div class="certification-icon">
-                    <i class="fas fa-certificate"></i>
-                </div>
-                <h3>RHCSA 6</h3>
-                <p>Red Hat Certified System Administrator</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-section">
-            <p>I'm always interested in discussing new opportunities and challenging projects. Send me a message below!</p>
-            
-            <form action="https://formspree.io/f/mojqwplv" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message:</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or opportunity..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-            
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <strong>Location</strong><br>
-                        Austin, TX
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <div>
-                        <strong>LinkedIn</strong><br>
-                        <a href="https://www.linkedin.com/in/zarapapoyan/">linkedin.com/in/zarapapoyan</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Zara Papoyan. Built with <i class="fas fa-heart" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i> and modern web technologies.</p>
+      <span class="sr-only">Copyright</span>
+      © <span id="y"></span> Zara Papoyan. All rights reserved.
+      <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
     </footer>
-
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </div>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Theme toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.removeAttribute('data-theme');
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.getElementById('theme-icon').className = 'fas fa-sun';
-        }
-
-        // Dynamic skill tag animation
-        document.querySelectorAll('.skill-tag').forEach((tag, index) => {
-            tag.style.animationDelay = `${index * 0.05}s`;
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1) translateY(-2px)';
-            });
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) translateY(0)';
-            });
-        });
-
-        // Experience timeline animation
-        const experienceObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('.experience-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-30px)';
-            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            experienceObserver.observe(item);
-        });
-
-        // Add typing effect to hero summary
-        const summaryText = document.querySelector('.hero .summary');
-        const originalText = summaryText.textContent;
-        summaryText.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                summaryText.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 30);
-            }
-        };
-        
-        // Start typing effect after hero section loads
-        setTimeout(typeWriter, 1000);
-    </script>
+  </div>
 </body>
 </html>
+
