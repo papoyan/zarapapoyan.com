@@ -19,13 +19,17 @@
   <meta property="og:title" content="Zara Papoyan | Senior Platform Engineer (DevOps/SRE)" />
   <meta property="og:description" content="Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering." />
   <meta property="og:url" content="https://zarapapoyan.com/" />
-  <!-- If you later add a headshot image hosted on this domain, set og:image -->
+  <!-- Recommended: add a real image hosted on your domain (1200x630). -->
   <!-- <meta property="og:image" content="https://zarapapoyan.com/og-image.jpg" /> -->
+  <!-- <meta property="og:image:width" content="1200" /> -->
+  <!-- <meta property="og:image:height" content="630" /> -->
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Zara Papoyan | Senior Platform Engineer (DevOps/SRE)" />
   <meta name="twitter:description" content="Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering." />
+  <!-- Recommended: match og:image -->
+  <!-- <meta name="twitter:image" content="https://zarapapoyan.com/og-image.jpg" /> -->
 
   <!-- Basic performance hints -->
   <meta name="theme-color" content="#ffffff" />
@@ -80,7 +84,7 @@
     .muted { color: var(--muted); }
     footer { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
     .sr-only {
-      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -0.999px;
       overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
   </style>
@@ -95,7 +99,8 @@
     "jobTitle": "Senior Platform Engineer",
     "sameAs": [
       "https://www.linkedin.com/in/zarapapoyan/",
-      "https://github.com/papoyan"
+      "https://github.com/papoyan",
+      "https://www.instagram.com/zara.papoyan.official/"
     ],
     "knowsAbout": [
       "Site Reliability Engineering",
@@ -114,22 +119,27 @@
 
 <body>
   <div class="wrap">
-    <header>
+<header>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <img
+      src="/headshot.jpg"
+      alt="Zara Papoyan — Senior Platform Engineer"
+      width="72"
+      height="72"
+      style="border-radius:50%; object-fit:cover;"
+    />
+    <div>
       <h1 class="name">Zara Papoyan</h1>
-      <p class="title">Senior Platform Engineer (DevOps / SRE) — AWS • Kubernetes • Terraform • CI/CD • Reliability</p>
+      <p class="title">
+        Senior Platform Engineer (DevOps / SRE) — AWS • Kubernetes • Terraform • CI/CD • Reliability
+      </p>
+    </div>
+  </div>
 
-      <nav class="links" aria-label="Primary links">
-        <a class="pill" href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">
-          <strong>LinkedIn</strong> <span>linkedin.com/in/zarapapoyan</span>
-        </a>
-        <a class="pill" href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">
-          <strong>GitHub</strong> <span>github.com/papoyan</span>
-        </a>
-        <!-- Optional: add an email once you decide on one -->
-        <!-- <a class="pill" href="mailto:you@zarapapoyan.com"><strong>Email</strong> <span>you@zarapapoyan.com</span></a> -->
-      </nav>
-    </header>
-
+  <nav class="links" aria-label="Primary links">
+    ...
+  </nav>
+</header>
     <main>
       <section>
         <h2>About</h2>
@@ -160,8 +170,18 @@
       <section>
         <h2>Professional Profiles</h2>
         <ul>
-          <li><a href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
-          <li><a href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">GitHub</a></li>
+          <li>
+            <a href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">LinkedIn</a>
+            <span class="muted"> — Primary professional network</span>
+          </li>
+          <li>
+            <a href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">GitHub</a>
+            <span class="muted"> — Code and infrastructure projects</span>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/zara.papoyan.official/" rel="me noopener noreferrer" target="_blank">Instagram (Professional)</a>
+            <span class="muted"> — Official professional profile</span>
+          </li>
         </ul>
 
         <h2 style="margin-top:14px;">Keywords (for search)</h2>
