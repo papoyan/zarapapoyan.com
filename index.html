@@ -19,22 +19,17 @@
   <meta property="og:title" content="Zara Papoyan | Senior Platform Engineer (DevOps/SRE)" />
   <meta property="og:description" content="Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering." />
   <meta property="og:url" content="https://zarapapoyan.com/" />
-  <!-- Recommended: add a real image hosted on your domain (1200x630). -->
+  <!-- Optional later -->
   <!-- <meta property="og:image" content="https://zarapapoyan.com/og-image.jpg" /> -->
-  <!-- <meta property="og:image:width" content="1200" /> -->
-  <!-- <meta property="og:image:height" content="630" /> -->
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Zara Papoyan | Senior Platform Engineer (DevOps/SRE)" />
   <meta name="twitter:description" content="Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering." />
-  <!-- Recommended: match og:image -->
+  <!-- Optional later -->
   <!-- <meta name="twitter:image" content="https://zarapapoyan.com/og-image.jpg" /> -->
 
-  <!-- Basic performance hints -->
   <meta name="theme-color" content="#ffffff" />
-
-  <!-- Optional favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <style>
@@ -72,6 +67,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      min-width: 0;
     }
 
     .avatar {
@@ -80,10 +76,14 @@
       border-radius: 50%;
       object-fit: cover;
       flex: 0 0 auto;
+      background: #f3f4f6;
+      border: 1px solid var(--border);
     }
 
+    .heroText { min-width: 0; }
+
     .name { font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; margin: 0; }
-    .title { margin: 0; font-size: 18px; color: var(--muted); }
+    .title { margin: 6px 0 0; font-size: 18px; color: var(--muted); }
 
     .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
     .pill {
@@ -95,6 +95,7 @@
       border-radius: 999px;
       background: #fff;
       text-decoration: none;
+      max-width: 100%;
     }
     .pill span { color: var(--muted); text-decoration: none; }
     .pill strong { font-weight: 600; text-decoration: none; }
@@ -102,7 +103,6 @@
     main { padding-top: 22px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; }
     @media (max-width: 860px) {
       main { grid-template-columns: 1fr; }
-      .hero { align-items: flex-start; }
       .name { font-size: 34px; }
       .avatar { width: 64px; height: 64px; }
     }
@@ -121,52 +121,151 @@
     }
   </style>
 
-<!-- Structured Data (Schema.org) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://zarapapoyan.com/#website",
-      "url": "https://zarapapoyan.com/",
-      "name": "Zara Papoyan",
-      "description": "Zara Papoyan is a Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering.",
-      "inLanguage": "en-US"
-    },
-    {
-      "@type": "Person",
-      "@id": "https://zarapapoyan.com/#zara-papoyan",
-      "name": "Zara Papoyan",
-      "url": "https://zarapapoyan.com/",
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://zarapapoyan.com/headshot.jpg",
-        "caption": "Zara Papoyan"
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zarapapoyan.com/#website",
+        "url": "https://zarapapoyan.com/",
+        "name": "Zara Papoyan",
+        "description": "Zara Papoyan is a Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering.",
+        "inLanguage": "en-US"
       },
-      "jobTitle": "Senior Platform Engineer",
-      "description": "Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering.",
-      "knowsAbout": [
-        "Platform Engineering",
-        "Site Reliability Engineering",
-        "DevOps",
-        "AWS",
-        "Kubernetes",
-        "Terraform",
-        "CI/CD",
-        "Observability",
-        "Infrastructure as Code"
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/zarapapoyan/",
-        "https://github.com/papoyan",
-        "https://www.instagram.com/zara.papoyan.official/"
-      ],
-      "mainEntityOfPage": {
-        "@id": "https://zarapapoyan.com/#website"
+      {
+        "@type": "Person",
+        "@id": "https://zarapapoyan.com/#zara-papoyan",
+        "name": "Zara Papoyan",
+        "url": "https://zarapapoyan.com/",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://zarapapoyan.com/headshot.jpg",
+          "caption": "Zara Papoyan"
+        },
+        "jobTitle": "Senior Platform Engineer",
+        "description": "Senior Platform Engineer (DevOps/SRE) specializing in AWS, Kubernetes, Terraform, CI/CD, and cloud reliability engineering.",
+        "knowsAbout": [
+          "Platform Engineering",
+          "Site Reliability Engineering",
+          "DevOps",
+          "AWS",
+          "Kubernetes",
+          "Terraform",
+          "CI/CD",
+          "Observability",
+          "Infrastructure as Code"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/zarapapoyan/",
+          "https://github.com/papoyan",
+          "https://www.instagram.com/zara.papoyan.official/"
+        ],
+        "mainEntityOfPage": {
+          "@id": "https://zarapapoyan.com/#website"
+        }
       }
-    }
-  ]
-}
-</script>
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="hero">
+        <img
+          class="avatar"
+          src="/headshot.jpg"
+          alt="Zara Papoyan — Senior Platform Engineer"
+          width="72"
+          height="72"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="heroText">
+          <h1 class="name">Zara Papoyan</h1>
+          <p class="title">Senior Platform Engineer (DevOps / SRE) — AWS • Kubernetes • Terraform • CI/CD • Reliability</p>
+        </div>
+      </div>
+
+      <nav class="links" aria-label="Primary links">
+        <a class="pill" href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">
+          <strong>LinkedIn</strong> <span>linkedin.com/in/zarapapoyan</span>
+        </a>
+        <a class="pill" href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">
+          <strong>GitHub</strong> <span>github.com/papoyan</span>
+        </a>
+        <a class="pill" href="https://www.instagram.com/zara.papoyan.official/" rel="me noopener noreferrer" target="_blank">
+          <strong>Instagram</strong> <span>instagram.com/zara.papoyan.official</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>About</h2>
+        <p class="muted">
+          I am a Senior Platform Engineer focused on building reliable, secure, and scalable cloud infrastructure.
+          I work across Kubernetes platforms, AWS services, infrastructure-as-code, CI/CD automation, and observability
+          to improve system uptime, performance, and developer velocity.
+        </p>
+
+        <h2 style="margin-top:14px;">Core Competencies</h2>
+        <ul>
+          <li>Platform Engineering: Kubernetes (EKS), Helm, Argo CD, GitOps, service onboarding</li>
+          <li>Infrastructure as Code: Terraform modules, environments, policy-as-code patterns</li>
+          <li>CI/CD &amp; Automation: pipelines, release automation, build/test/deploy workflows</li>
+          <li>Reliability Engineering: SLOs/SLIs, incident response, runbooks, postmortems</li>
+          <li>Observability: metrics/logs/traces, alerting strategy, operational dashboards</li>
+          <li>Security &amp; Access: IAM strategy, secrets management, least privilege, auditing</li>
+        </ul>
+
+        <h2 style="margin-top:14px;">Focus Areas</h2>
+        <ul>
+          <li>Reducing operational toil through automation and standardization</li>
+          <li>Improving deployment safety via GitOps, progressive delivery, and guardrails</li>
+          <li>Hardening cloud environments with pragmatic security controls</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Professional Profiles</h2>
+        <ul>
+          <li>
+            <a href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">LinkedIn</a>
+            <span class="muted"> — Primary professional network</span>
+          </li>
+          <li>
+            <a href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">GitHub</a>
+            <span class="muted"> — Code and infrastructure projects</span>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/zara.papoyan.official/" rel="me noopener noreferrer" target="_blank">Instagram (Professional)</a>
+            <span class="muted"> — Official professional profile</span>
+          </li>
+        </ul>
+
+        <h2 style="margin-top:14px;">Keywords (for search)</h2>
+        <p class="muted">
+          Zara Papoyan, Senior Platform Engineer, DevOps Engineer, Site Reliability Engineer, SRE,
+          AWS, Kubernetes, Terraform, EKS, Helm, Argo CD, GitOps, CI/CD, Observability.
+        </p>
+
+        <h2 style="margin-top:14px;">Contact</h2>
+        <p class="muted">
+          For professional inquiries, please connect via LinkedIn.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <span class="sr-only">Copyright</span>
+      © <span id="y"></span> Zara Papoyan. All rights reserved.
+      <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    </footer>
+  </div>
+</body>
+</html>
 
