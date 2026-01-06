@@ -75,13 +75,22 @@
     }
     .pill span { color: var(--muted); text-decoration: none; }
     .pill strong { font-weight: 600; text-decoration: none; }
+
     main { padding-top: 22px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; }
     @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+
     section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
     h2 { margin: 0 0 10px; font-size: 18px; }
     ul { margin: 8px 0 0 18px; padding: 0; }
     li { margin: 6px 0; color: var(--text); }
     .muted { color: var(--muted); }
+
+    /* Testimonials */
+    .testimonials { margin-top: 18px; }
+    .testimonial { margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--border); }
+    .testimonial p { margin: 0 0 6px; font-style: italic; }
+    .testimonial footer { font-size: 14px; }
+
     footer { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
     .sr-only {
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -0.999px;
@@ -119,27 +128,36 @@
 
 <body>
   <div class="wrap">
-<header>
-  <div style="display:flex; align-items:center; gap:16px;">
-    <img
-      src="/headshot.jpg"
-      alt="Zara Papoyan — Senior Platform Engineer"
-      width="72"
-      height="72"
-      style="border-radius:50%; object-fit:cover;"
-    />
-    <div>
-      <h1 class="name">Zara Papoyan</h1>
-      <p class="title">
-        Senior Platform Engineer (DevOps / SRE) — AWS • Kubernetes • Terraform • CI/CD • Reliability
-      </p>
-    </div>
-  </div>
+    <header>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <img
+          src="/headshot.jpg"
+          alt="Zara Papoyan — Senior Platform Engineer"
+          width="72"
+          height="72"
+          style="border-radius:50%; object-fit:cover;"
+        />
+        <div>
+          <h1 class="name">Zara Papoyan</h1>
+          <p class="title">
+            Senior Platform Engineer (DevOps / SRE) — AWS • Kubernetes • Terraform • CI/CD • Reliability
+          </p>
+        </div>
+      </div>
 
-  <nav class="links" aria-label="Primary links">
-    ...
-  </nav>
-</header>
+      <nav class="links" aria-label="Primary links">
+        <a class="pill" href="https://www.linkedin.com/in/zarapapoyan/" rel="me noopener noreferrer" target="_blank">
+          <strong>LinkedIn</strong> <span>linkedin.com/in/zarapapoyan</span>
+        </a>
+        <a class="pill" href="https://github.com/papoyan" rel="me noopener noreferrer" target="_blank">
+          <strong>GitHub</strong> <span>github.com/papoyan</span>
+        </a>
+        <a class="pill" href="https://www.instagram.com/zara.papoyan.official/" rel="me noopener noreferrer" target="_blank">
+          <strong>Instagram</strong> <span>@zara.papoyan.official</span>
+        </a>
+      </nav>
+    </header>
+
     <main>
       <section>
         <h2>About</h2>
@@ -153,10 +171,10 @@
         <ul>
           <li>Platform Engineering: Kubernetes (EKS), Helm, Argo CD, GitOps, service onboarding</li>
           <li>Infrastructure as Code: Terraform modules, environments, policy-as-code patterns</li>
-          <li>CI/CD & Automation: pipelines, release automation, build/test/deploy workflows</li>
+          <li>CI/CD &amp; Automation: pipelines, release automation, build/test/deploy workflows</li>
           <li>Reliability Engineering: SLOs/SLIs, incident response, runbooks, postmortems</li>
           <li>Observability: metrics/logs/traces, alerting strategy, operational dashboards</li>
-          <li>Security & Access: IAM strategy, secrets management, least privilege, auditing</li>
+          <li>Security &amp; Access: IAM strategy, secrets management, least privilege, auditing</li>
         </ul>
 
         <h2 style="margin-top:14px;">Focus Areas</h2>
@@ -197,6 +215,55 @@
       </section>
     </main>
 
+    <!-- Testimonials section below the two-column layout -->
+    <section class="testimonials" aria-label="Professional recommendations">
+      <h2>Professional Recommendations</h2>
+
+      <blockquote class="testimonial">
+        <p>
+          “Zara is a brilliant System Engineer — well educated, experienced. It was a real honor for me to work with Zara.”
+        </p>
+        <footer>
+          <strong>Ihor Piddubnyak</strong><br />
+          <span class="muted">July 2023</span>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial">
+        <p>
+          “Zara was knowledgeable, easy to work with, and one of the go-to people to solve complex problems. I highly recommend Zara for any technical role due to her skills (both technical and interpersonal).”
+        </p>
+        <footer>
+          <strong>Julio Villarreal Pelegrino</strong><br />
+          <span class="muted">Director, Technology &amp; GTM, Global Services @ Red Hat · July 2023</span>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial">
+        <p>
+          “Zara was a huge help during a difficult transition and went the extra mile to ensure issues were handled swiftly with minimal customer impact. She is skilled, dedicated, and easy to work with.”
+        </p>
+        <footer>
+          <strong>Andrew Stangl</strong><br />
+          <span class="muted">Senior Site Reliability Engineer · September 2022</span>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial">
+        <p>
+          “Zara showed herself as a high-level system administrator who knows Linux, DNS, and web hosting. Zara is very responsible and it is a real pleasure to work with her.”
+        </p>
+        <footer>
+          <strong>Yuriy Korostyshevskyy</strong><br />
+          <span class="muted">Principal Technical Project Manager / Solution Architect · September 2022</span>
+        </footer>
+      </blockquote>
+
+      <p class="muted" style="margin: 10px 0 0;">
+        Recommendations sourced from professional colleagues (LinkedIn).
+      </p>
+    </section>
+
     <footer>
       <span class="sr-only">Copyright</span>
       © <span id="y"></span> Zara Papoyan. All rights reserved.
@@ -205,5 +272,4 @@
   </div>
 </body>
 </html>
-
 
